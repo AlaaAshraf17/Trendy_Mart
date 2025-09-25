@@ -75,6 +75,7 @@ export default function Wishlist() {
                   <td colSpan={5} className="text-center p-6 text-gray-500">
                     Your wishlist is empty.
                   </td>
+                  
                 </tr>
               )}
             </tbody>
@@ -150,8 +151,7 @@ export default function Wishlist() {
           <div className="flex justify-center md:justify-end mt-6">
             <Link
               to="/cart"
-              className="bg-[#DB4444] hover:bg-[#cb4b4b] text-white font-semibold py-3 px-6 rounded-lg shadow-md transition duration-300 w-full md:w-auto text-center"
-            >
+              className="bg-[#DB4444] hover:bg-[#cb4b4b] text-white font-semibold py-3 px-6 rounded-lg shadow-md transition duration-300 w-full md:w-auto text-center">
               Go to Cart
             </Link>
           </div>

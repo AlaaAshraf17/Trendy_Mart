@@ -9,7 +9,9 @@ export default function Cart() {
 
   return (
     <div className=" container mx-auto mt-10 px-4">
-      <div className='hidden md:block overflow-x-auto'>
+      {cart?.products?.length>0?(
+        <>
+              <div className='hidden md:block overflow-x-auto'>
       <table className="min-w-full bg-white rounded-lg shadow-md overflow-hidden">
         <thead className="bg-gray-50 border-b border-gray-200">
           <tr>
@@ -79,7 +81,7 @@ export default function Cart() {
       </table>
       </div>
 
-       <div className='md:hidden space-y-4'>
+      <div className='md:hidden space-y-4'>
         {cart?.products?.map((item,i)=>(
           <div key={i} className='bg-white rounded-lg shadow-md p-4 border border-gray-200'>
             <div className='flex items-start space-x-4'>
@@ -127,6 +129,7 @@ export default function Cart() {
               </div>
             </div>
           </div>
+          
         ))}
         <div className='bg-gray-50 rounded-lg p-4 border border-gray-200 sticky bottom-4'>
         <div className='flex justify-between items-center'>
@@ -137,8 +140,7 @@ export default function Cart() {
         </div>
         </div>
         </div>
-
-      <div className="flex justify-center md:justify-end mt-6">
+          <div className="flex justify-center md:justify-end mt-6">
         <button
           className="bg-[#DB4444] hover:bg-[#cb4b4b] text-white font-semibold py-3 px-6 rounded-lg md:w-auto shadow-md transition duration-300"
           type="button"
@@ -146,6 +148,21 @@ export default function Cart() {
           <Link to="/payment">Checkout</Link>
         </button>
       </div>
+        </>
+      ):(<>
+        <div className="bg-white rounded-lg shadow-md p-8 text-center">
+    <p className="text-gray-500 text-lg mb-4">
+      Your cart is empty
+    </p>
+    <Link
+      to="/"
+      className="inline-block bg-[#DB4444] hover:bg-[#cb4b4b] text-white px-6 py-2 rounded-md transition"
+    >
+      Continue Shopping
+    </Link>
+  </div>
+      </>)}
+
     </div>
   );
 }

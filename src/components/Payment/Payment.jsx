@@ -3,14 +3,20 @@ import styles from './Payment.module.css'
 import { useFormik } from "formik"
 import { CartContext } from '../../Context/CartContext';
 import { Link } from 'react-router-dom';
+import * as Yup from 'yup';
 export default function Payment() {
     const {setCart}=useContext(CartContext)
     const [isPaid,setIsPaid]=useState(false)
+      let mySchema = Yup.object({
+        phone: Yup.string().required("phone is required").matches(/^[0-9]+$/, "Phone number must contain only digits").matches(/^0[0-9]{9,14}$/, "Phone number must start with 0 and be 10–15 digits long"),
+        address: Yup.string().required("address is required").min(10, "Address must be at least 10 characters long")
+      });
     let formik = useFormik({
       initialValues: {
         phone: "",
         address: ""
       },
+      validationSchema: mySchema,
       onSubmit: (values) => {
         paying(values)
       }
