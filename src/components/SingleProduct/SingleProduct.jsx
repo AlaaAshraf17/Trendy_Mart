@@ -49,7 +49,7 @@ export default function SingleProduct() {
         <div className="p-6 flex flex-col justify-between flex-grow">
           <div>
             <p className="text-gray-500 text-sm mb-1">{product.category}</p>
-            <h1 className="text-2xl font-semibold mb-2">{product.title}</h1>
+            <h1 className="text-2xl font-semibold mb-2 text-black">{product.title}</h1>
             <p className="text-gray-700 mb-4">{product.description}</p>
           </div>
           <div className="flex justify-between items-center mb-4">

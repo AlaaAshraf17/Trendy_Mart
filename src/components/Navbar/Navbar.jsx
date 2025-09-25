@@ -21,7 +21,7 @@ export default function Navbar() {
     <>
       <div className="navbar bg-[#FFFFFF] px-6 w-full border-b border-gray-300">
         <div className="flex-1">
-          <Link to="/" className="text-2xl font-bold">
+          <Link to="/" className="text-2xl font-bold text-black">
           <i className="fa-solid fa-basket-shopping text-red-600"></i>
             TrendyMart
           </Link>
@@ -59,9 +59,9 @@ export default function Navbar() {
               
             </a>
             <button className="text-gray-600 hover:text-red-500 transition">
-           <Link to="/cart" ><i className="fa-solid fa-cart-shopping"></i>
+          <Link to="/cart" ><i className="fa-solid fa-cart-shopping"></i>
             {cartCount>0&&(<span className="absolute top-1 -right- bg-red-500 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">{cartCount}</span>)}
-           </Link> 
+          </Link> 
           </button>
           <button className="text-gray-600 hover:text-red-500 transition">
             <Link to="/wishlist"><i className="fas fa-heart text-xl"></i></Link>
@@ -69,13 +69,12 @@ export default function Navbar() {
 
         </div>:""}
 
-        {/* Mobile Menu (Hamburger) */}
         <div className="sm:hidden flex items-center">
           <details className="dropdown dropdown-end">
             <summary className="btn btn-ghost">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6"
+                className="h-6 w-6 text-black"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor">
@@ -84,10 +83,8 @@ export default function Navbar() {
               </svg>
             </summary>
 
-            {/* Dropdown Content */}
             <ul className="menu menu-sm dropdown-content mt-3 z-[1] p-4 shadow bg-base-100 w-screen font-medium space-y-2">
 
-              {/* Search Input (Mobile) */}
               {token?<><div className="relative mb-3">
                       <a href="https://facebook.com" target="_blank" rel="noreferrer">
               <i className="fa-brands fa-facebook text-2xl hover:text-[#DB4444]"></i>
