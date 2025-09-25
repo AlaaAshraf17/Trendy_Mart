@@ -51,7 +51,7 @@ export default function Login() {
   return (
     <>
       <div className={`${styles.Login} container mx-auto mt-16 max-w-lg p-8 bg-white rounded-2xl shadow-xl`}>
-        <h2 className="font-semibold text-4xl text-center mb-2">Log in to TrendyMart</h2>
+        <h2 className="font-semibold text-4xl text-center mb-2 text-black">Log in to TrendyMart</h2>
         <h6 className="text-[#DB4444] text-center mb-6">Enter your details below</h6>
         {userMessage?<div role="alert" className="alert alert-success">
   <svg
@@ -85,15 +85,15 @@ export default function Login() {
 
         <form className="space-y-6" onSubmit={formik.handleSubmit}>
           <div>
-            <label htmlFor="username" className="block text-lg font-medium mb-2">Username:</label>
-            <input type="text" name="username" id="username" value={formik.values.username} onChange={formik.handleChange} onBlur={formik.handleBlur} placeholder="Enter your username" className="input input-bordered w-full mt-1 border-[#DB4444] focus:border-[#DB4444] focus:ring-[#DB4444]"/>
+            <label htmlFor="username" className="block text-lg font-medium mb-2 text-black">Username:</label>
+            <input type="text" name="username" id="username" value={formik.values.username} onChange={formik.handleChange} onBlur={formik.handleBlur} placeholder="Enter your username" className="input input-bordered w-full mt-1 border-[#DB4444] focus:border-[#DB4444] focus:ring-[#DB4444] "/>
             {formik.touched.username && formik.errors.username ? (
               <div className="text-red-500 text-sm mt-1">{formik.errors.username}</div>
             ) : null}
           </div>
 
           <div>
-            <label htmlFor="password" className="block text-lg font-medium mb-2">Password:</label>
+            <label htmlFor="password" className="block text-lg font-medium mb-2 text-black">Password:</label>
             <input type="password" name="password" id="password" value={formik.values.password} onChange={formik.handleChange} onBlur={formik.handleBlur} placeholder="Enter your password" className="input input-bordered w-full mt-1 border-[#DB4444] focus:border-[#DB4444] focus:ring-[#DB4444]"/>
             {formik.touched.password && formik.errors.password ? (
               <div className="text-red-500 text-sm mt-1">{formik.errors.password}</div>

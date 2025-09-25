@@ -72,7 +72,7 @@ export default function Register() {
 
   return (
     <div className={`${styles.Register} container mx-auto mt-16 max-w-lg p-8 bg-white rounded-2xl shadow-xl`}>
-      <h2 className="font-semibold text-4xl text-center mb-2">Create an Account</h2>
+      <h2 className="font-semibold text-4xl text-center mb-2 text-black">Create an Account</h2>
       <h6 className="text-[#DB4444] text-center mb-6">Enter your details below</h6>
 
       {userMessage ? <div role="alert" className="alert alert-success">
@@ -85,7 +85,7 @@ export default function Register() {
 
       <form className="space-y-6" onSubmit={formik.handleSubmit}>
         <div>
-          <label htmlFor="firstName" className="block text-lg font-medium mb-2">First Name:</label>
+          <label htmlFor="firstName" className="block text-lg font-medium mb-2 text-black">First Name:</label>
           <input type="text" name="firstName" id="firstName" value={formik.values.firstName} onChange={formik.handleChange} onBlur={formik.handleBlur} placeholder="Enter your first name" className="input input-bordered w-full mt-1 border-[#DB4444] focus:ring-[#DB4444]" />
           {formik.touched.firstName && formik.errors.firstName ? (
             <div className="text-red-500 text-sm mt-1">{formik.errors.firstName}</div>
@@ -93,7 +93,7 @@ export default function Register() {
         </div>
 
         <div>
-          <label htmlFor="lastName" className="block text-lg font-medium mb-2">Last Name:</label>
+          <label htmlFor="lastName" className="block text-lg font-medium mb-2 text-black">Last Name:</label>
           <input type="text" name="lastName" id="lastName" value={formik.values.lastName} onChange={formik.handleChange} onBlur={formik.handleBlur} placeholder="Enter your last name" className="input input-bordered w-full mt-1 border-[#DB4444] focus:ring-[#DB4444]" />
           {formik.touched.lastName && formik.errors.lastName ? (
             <div className="text-red-500 text-sm mt-1">{formik.errors.lastName}</div>
@@ -101,7 +101,7 @@ export default function Register() {
         </div>
 
         <div>
-          <label htmlFor="username" className="block text-lg font-medium mb-2">Username:</label>
+          <label htmlFor="username" className="block text-lg font-medium mb-2 text-black">Username:</label>
           <input type="text" name="username" id="username" value={formik.values.username} onChange={formik.handleChange} onBlur={formik.handleBlur} placeholder="Enter your username" className="input input-bordered w-full mt-1 border-[#DB4444] focus:ring-[#DB4444]" />
           {formik.touched.username && formik.errors.username ? (
             <div className="text-red-500 text-sm mt-1">{formik.errors.username}</div>
@@ -109,7 +109,7 @@ export default function Register() {
         </div>
 
         <div>
-          <label htmlFor="email" className="block text-lg font-medium mb-2">Email:</label>
+          <label htmlFor="email" className="block text-lg font-medium mb-2 text-black">Email:</label>
           <input type="email" name="email" id="email" value={formik.values.email} onChange={formik.handleChange} onBlur={formik.handleBlur} placeholder="Enter your email" className="input input-bordered w-full mt-1 border-[#DB4444] focus:ring-[#DB4444]" />
           {formik.touched.email && formik.errors.email ? (
             <div className="text-red-500 text-sm mt-1">{formik.errors.email}</div>
@@ -117,7 +117,7 @@ export default function Register() {
         </div>
 
         <div>
-          <label htmlFor="password" className="block text-lg font-medium mb-2">Password:</label>
+          <label htmlFor="password" className="block text-lg font-medium mb-2 text-black">Password:</label>
           <input type="password" name="password" id="password" value={formik.values.password} onChange={formik.handleChange} onBlur={formik.handleBlur} placeholder="Enter your password" className="input input-bordered w-full mt-1 border-[#DB4444] focus:ring-[#DB4444]" />
           {formik.touched.password && formik.errors.password ? (
             <div className="text-red-500 text-sm mt-1">{formik.errors.password}</div>
