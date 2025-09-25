@@ -115,7 +115,7 @@ const images = [
             />
             <div className="p-3 flex flex-col flex-grow">
               <p className="text-gray-500 text-sm">{product.category}</p>
-              <h2 className="font-semibold text-base truncate">{product.title}</h2>
+              <h2 className="font-semibold text-base truncate text-black">{product.title}</h2>
               <div className="flex justify-between items-center mt-2 mb-3">
                 <p className="text-[#DB4444] font-bold">{product.price} EGP</p>
                 <p className="text-yellow-500 flex items-center gap-1 text-sm">
@@ -186,7 +186,7 @@ const images = [
             />
             <div className="p-3 flex flex-col flex-grow">
               <p className="text-gray-500 text-sm">{product.category}</p>
-              <h2 className="font-semibold text-base truncate">{product.title}</h2>
+              <h2 className="font-semibold text-base truncate text-black">{product.title}</h2>
               <div className="flex justify-between items-center mt-2 mb-3">
                 <p className="text-[#DB4444] font-bold">{product.price} EGP
                   <span className="text-gray-500 line-through ml-2">
