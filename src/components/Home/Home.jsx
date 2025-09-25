@@ -155,7 +155,7 @@ const images = [
               alt={brand}
               className="w-24 h-24 object-contain mx-auto mb-3"
             />
-            <p className="font-semibold">{brand}</p>
+            <p className="font-semibold text-black ">{brand}</p>
           </div>
         ))}
       </div>
