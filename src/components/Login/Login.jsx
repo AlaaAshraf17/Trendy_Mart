@@ -107,7 +107,7 @@ export default function Login() {
             <button type="submit" className="btn w-1/2 bg-[#DB4444] hover:bg-red-600 border-none text-white text-lg py-3 rounded-xl" disabled={!(formik.isValid&&formik.dirty)} > Log In</button>
           </div>}
         </form>
-        <p className="text-center mt-6">Do not have an account? <Link to="/register" className="text-[#DB4444] font-medium">Register</Link></p>
+        <p className="text-center mt-6 text-black">Do not have an account? <Link to="/register" className="text-[#DB4444] font-medium">Register</Link></p>
       </div>
     </>
   );

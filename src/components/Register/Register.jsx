@@ -136,7 +136,7 @@ export default function Register() {
           </div>}
       </form>
 
-      <p className="text-center mt-6">Already have an account? <Link to="/login" className="text-[#DB4444] font-medium">Log in</Link></p>
+      <p className="text-center mt-6 text-black">Already have an account? <Link to="/login" className="text-[#DB4444] font-medium">Log in</Link></p>
     </div>
   )
 }
