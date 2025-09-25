@@ -49,12 +49,13 @@ export default function Home() {
     dotsClass: "slick-dots custom-dots"
   };
 
-  const images = [
-    "src/assets/g1.jpg",
-    "src/assets/beuty.png",
-    "src/assets/beuty2.png",
-    "src/assets/g3.jpg"
-  ];
+const images = [
+  "/g1.jpg",
+  "/beuty.png",
+  "/beuty2.png",
+  "/g3.jpg"
+];
+
 
   return (
     <>
