@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { Link, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { tokenContext } from '../../Context/Context'
 import { CartContext } from '../../Context/CartContext';
 
@@ -16,15 +16,18 @@ export default function Navbar() {
     setToken(null)
     navigate("/register")
   }
+  const navLinksClass=({isActive})=>{
+   return isActive?"bg-red-600 text-white px-3 py-2 rounded":"hover:text-red-600"
+  }
 
   return (
     <>
       <div className="navbar bg-[#FFFFFF] px-6 w-full border-b border-gray-300">
         <div className="flex-1">
-          <Link to="/" className="text-2xl font-bold text-black">
+          <NavLink to="/" className="text-2xl font-bold text-black">
           <i className="fa-solid fa-basket-shopping text-red-600"></i>
             TrendyMart
-          </Link>
+          </NavLink>
         </div>
 
 
@@ -32,9 +35,9 @@ export default function Navbar() {
           <ul className="menu menu-horizontal px-1 space-x-2 font-medium">
             {token && (
               <>
-                <li><Link to="/" className="hover:text-red-600">Home</Link></li>
-                <li><Link to="/products" className="hover:text-red-600">Products</Link></li>
-                <li><Link to="/categories" className="hover:text-red-600">Categories</Link></li>
+                <li><NavLink to="/" className={navLinksClass}>Home</NavLink></li>
+                <li><NavLink to="/products" className={navLinksClass}>Products</NavLink></li>
+                <li><NavLink to="/categories" className={navLinksClass}>Categories</NavLink></li>
                 
               </>
             )}
@@ -42,8 +45,8 @@ export default function Navbar() {
             {token
               ? <li><a onClick={logOut} className="hover:text-red-600">Logout</a></li>
               : <>
-                <li><Link to="/login" className="hover:text-red-600">Login</Link></li>
-                <li><Link to="/register" className="hover:text-red-600">Register</Link></li>
+                <li><NavLink to="/login" className={navLinksClass}>Login</NavLink></li>
+                <li><NavLink to="/register" className={navLinksClass}>Register</NavLink></li>
               </>
             }
           </ul>
@@ -59,12 +62,12 @@ export default function Navbar() {
               
             </a>
             <button className="text-gray-600 hover:text-red-500 transition">
-          <Link to="/cart" ><i className="fa-solid fa-cart-shopping"></i>
+          <NavLink to="/cart" ><i className="fa-solid fa-cart-shopping"></i>
             {cartCount>0&&(<span className="absolute top-1 -right- bg-red-500 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">{cartCount}</span>)}
-          </Link> 
+          </NavLink> 
           </button>
           <button className="text-gray-600 hover:text-red-500 transition">
-            <Link to="/wishlist"><i className="fas fa-heart text-xl"></i></Link>
+            <NavLink to="/wishlist"><i className="fas fa-heart text-xl"></i></NavLink>
           </button>
 
         </div>:""}
@@ -94,26 +97,26 @@ export default function Navbar() {
               
             </a>
               </div>
-              <li><Link to="/">Home</Link></li>
-              <li><Link to="/products">Products</Link></li>
-              <li><Link to="/categories" className="hover:text-red-600">Categories</Link></li>
+              <li><NavLink to="/">Home</NavLink></li>
+              <li><NavLink to="/products">Products</NavLink></li>
+              <li><NavLink to="/categories" className="hover:text-red-600">Categories</NavLink></li>
               </>:""}
 
               {token
                 ? <li><a onClick={logOut} className="hover:text-red-600">Logout</a></li>
                 : <>
-                  <li><Link to="/login" className="hover:text-red-600">Login</Link></li>
-                  <li><Link to="/register">Register</Link></li>
+                  <li><NavLink to="/login" className="hover:text-red-600">Login</NavLink></li>
+                  <li><NavLink to="/register">Register</NavLink></li>
                 </>
               }
 
             
               {token?<div className="flex justify-around items-center mt-4">
                     <button className="text-gray-600 hover:text-red-500 transition">
-            <Link to="/cart" ><i className="fa-solid fa-cart-shopping"></i></Link> 
+            <NavLink to="/cart" ><i className="fa-solid fa-cart-shopping"></i></NavLink> 
           </button>
                 <button className="text-gray-600 hover:text-red-500 transition">
-                <Link to="/wishlist"> <i className="fas fa-heart text-xl"></i></Link> 
+                <NavLink to="/wishlist"> <i className="fas fa-heart text-xl"></i></NavLink> 
                 </button>
               </div>:""}
             </ul>

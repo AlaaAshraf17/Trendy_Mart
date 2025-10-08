@@ -1,10 +1,25 @@
 import React, { useContext, useState } from 'react'
 import styles from "./Register.module.css"
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, Navigate, useNavigate } from 'react-router-dom'
 import axios from "axios";
 import { useFormik } from "formik"
 import * as Yup from 'yup';
 import { tokenContext } from '../../Context/Context';
+import {getAuth , signInWithPopup, GoogleAuthProvider } from "firebase/auth"
+import {initializeApp} from "firebase/app"
+
+const firebaseConfig = {
+  apiKey: "AIzaSyClSWoKst7vGXxgmB5OAEN61sO_2kC0YHs",
+  authDomain: "registerapi-903a6.firebaseapp.com",
+  projectId: "registerapi-903a6",
+  storageBucket: "registerapi-903a6.firebasestorage.app",
+  messagingSenderId: "750324275509",
+  appId: "1:750324275509:web:1d643bef881d0c7dccd47c",
+  measurementId: "G-VFBMZJP0NM"
+};
+const app =initializeApp(firebaseConfig)
+const auth = getAuth(app)
+const provider = new GoogleAuthProvider()
 
 export default function Register() {
   let { setToken } = useContext(tokenContext);
@@ -63,10 +78,22 @@ export default function Register() {
     })
     .catch((error) => {
     console.log("Register error:", error.response?.data || error.message);
-     setUserMessage("");
+    setUserMessage("");
     setErrorMessage("Registration failed");
     setIsLoading(false);
   });
+  }
+  const handleGoogleLogin=()=>{
+    signInWithPopup(auth,provider).then((result)=>{
+      const user=result.user;
+      console.log("User Info: ",user)
+      user.getIdToken().then((token)=>{
+        localStorage.setItem("token",token)
+        Navigate("/")
+      })
+    }).catch((error)=>{
+      console.error("error during login: ",error)
+    })
   }
   
 
@@ -136,7 +163,20 @@ export default function Register() {
           </div>}
       </form>
 
+  <div className="flex justify-center mt-4">
+  <button 
+    onClick={handleGoogleLogin} 
+    className="flex items-center justify-center gap-3 w-full py-3 border border-gray-300 rounded-xl bg-white text-gray-700 text-lg font-medium hover:bg-gray-100 transition">
+    <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google logo" className="w-6 h-6"/>
+    Continue with Google
+  </button>
+</div>
+
+
+
+
       <p className="text-center mt-6 text-black">Already have an account? <Link to="/login" className="text-[#DB4444] font-medium">Log in</Link></p>
+      
     </div>
   )
 }
