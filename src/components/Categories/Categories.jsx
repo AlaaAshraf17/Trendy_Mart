@@ -5,7 +5,6 @@ import { useNavigate } from 'react-router-dom';
 import styles from './Categories.module.css';
 
 export default function Categories() {
-
   const [categoryImages, setCategoryImages] = useState({});
   const navigate = useNavigate();
 
@@ -18,20 +17,20 @@ export default function Categories() {
     queryFn: getCategories
   });
 
-    useEffect(() => {
+  useEffect(() => {
     if (data?.data) {
       data.data.forEach(cat => {
         axios.get(`https://dummyjson.com/products/category/${cat.slug}?limit=1`)
           .then((response) => {
-            setCategoryImages(prev => ({...prev,[cat.slug]: response.data.products[0]?.thumbnail}));
+            setCategoryImages(prev => ({ ...prev, [cat.slug]: response.data.products[0]?.thumbnail }));
           });
       });
     }
   }, [data]);
 
   return (
-    <div className="container mx-auto">
-      <h2 className="text-2xl font-bold mb-6 capitalize">
+    <div className="container mx-auto px-4 py-6">
+      <h2 className="text-2xl font-bold mb-6 capitalize text-gray-900 dark:text-white">
         Our Categories
       </h2>
 
@@ -39,17 +38,16 @@ export default function Categories() {
         {data?.data?.map((cat, i) => (
           <div key={i} className="p-2">
             <div
-              className="group bg-white rounded-xl shadow-md hover:shadow-xl hover:scale-[1.02] transition-all duration-300 flex flex-col justify-between overflow-hidden cursor-pointer"
+              className="group bg-white dark:bg-gray-800 rounded-xl shadow-md hover:shadow-xl hover:scale-[1.02] transition-all duration-300 flex flex-col justify-between overflow-hidden cursor-pointer border border-transparent dark:border-gray-700"
               onClick={() => navigate(`/products?category=${cat.slug}`)}
             >
               <img
                 src={categoryImages[typeof cat === "string" ? cat : cat.slug]}
                 className="w-full h-48 object-cover rounded-t-xl"
-                alt={cat}
+                alt={cat.name}
               />
-
               <div className="p-3 flex flex-col flex-grow">
-                <p className="text-gray-700 font-semibold capitalize">{cat.name}</p>
+                <p className="text-gray-700 dark:text-gray-200 font-semibold capitalize">{cat.name}</p>
               </div>
             </div>
           </div>
@@ -58,4 +56,3 @@ export default function Categories() {
     </div>
   )
 }
-

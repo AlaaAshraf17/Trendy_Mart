@@ -9,15 +9,16 @@ import App from './App.jsx'
 import TokenContextProvider from "./Context/Context.jsx";
 import CartContextProvider from "./Context/CartContext.jsx";
 import WishlistContextProvider from "./Context/WishlistContext.jsx";
+import ThemeContextProvider from "./Context/ThemeContext.jsx";
 
 createRoot(document.getElementById('root')).render(
-  <WishlistContextProvider>
+  <ThemeContextProvider>
+    <WishlistContextProvider>
       <CartContextProvider>
-      <TokenContextProvider>
-      <App />
-      </TokenContextProvider>
+        <TokenContextProvider>
+          <App />
+        </TokenContextProvider>
       </CartContextProvider>
-      </WishlistContextProvider>
-  
-  ,
+    </WishlistContextProvider>
+  </ThemeContextProvider>
 )

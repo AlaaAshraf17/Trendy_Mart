@@ -7,107 +7,111 @@ import * as Yup from 'yup';
 import { tokenContext } from '../../Context/Context';
 
 export default function Login() {
-  let {token,setToken}=useContext(tokenContext)
-  const[userMessage,setUserMessage]=useState()
-  const[errorMessage,setErrorMessage]=useState()
-  const[isLoading,setIsLoading]=useState(false)
+  let { token, setToken } = useContext(tokenContext)
+  const [userMessage, setUserMessage] = useState()
+  const [errorMessage, setErrorMessage] = useState()
+  const [isLoading, setIsLoading] = useState(false)
   let navigate = useNavigate()
+
   let mySchema = Yup.object({
     username: Yup.string().required("Username is required"),
     password: Yup.string().required("Password is required").min(6, "Password must be at least 6 characters")
   });
 
   let formik = useFormik({
-    initialValues: {
-      username: "",
-      password: ""
-    },
+    initialValues: { username: "", password: "" },
     validationSchema: mySchema,
-    onSubmit: (values) => {
-      loginForm(values);
-    }
+    onSubmit: (values) => loginForm(values)
   });
 
   async function loginForm(values) {
     setIsLoading(true)
-      return await axios.post("https://dummyjson.com/auth/login", {
-        username: values.username,
-        password: values.password
-      }).then((response)=>{
-            console.log("Login success:", response.data);
-            setToken(response.data.accessToken)
-            setUserMessage(response.data.firstName)
-            localStorage.setItem("token", response.data.accessToken);
-            localStorage.setItem("user", JSON.stringify(response.data));
-            setIsLoading(false)
-            navigate("/")
-      }).catch((error)=>{
-        console.log("error", error.response?.data || error.message)
-        setErrorMessage(error.response?.data?.message)
-        setIsLoading(false)
-      })
+    return await axios.post("https://dummyjson.com/auth/login", {
+      username: values.username,
+      password: values.password
+    }).then((response) => {
+      setToken(response.data.accessToken)
+      setUserMessage(response.data.firstName)
+      localStorage.setItem("token", response.data.accessToken);
+      localStorage.setItem("user", JSON.stringify(response.data));
+      setIsLoading(false)
+      navigate("/")
+    }).catch((error) => {
+      setErrorMessage(error.response?.data?.message)
+      setIsLoading(false)
+    })
   }
 
   return (
     <>
-      <div className={`${styles.Login} container mx-auto mt-16 max-w-lg p-8 bg-white rounded-2xl shadow-xl`}>
-        <h2 className="font-semibold text-4xl text-center mb-2 text-black">Log in to TrendyMart</h2>
+      <div className="container mx-auto mt-16 max-w-lg p-8 bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700">
+        <h2 className="font-semibold text-4xl text-center mb-2 text-gray-900 dark:text-white">Log in to TrendyMart</h2>
         <h6 className="text-[#DB4444] text-center mb-6">Enter your details below</h6>
-        {userMessage?<div role="alert" className="alert alert-success">
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    className="h-6 w-6 shrink-0 stroke-current"
-    fill="none"
-    viewBox="0 0 24 24">
-    <path
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth="2"
-      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-  </svg>
-  Login successful! Welcome {userMessage}
-</div>:""}
 
-{errorMessage?<div role="alert" className="alert alert-error">
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    className="h-6 w-6 shrink-0 stroke-current"
-    fill="none"
-    viewBox="0 0 24 24">
-    <path
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth="2"
-      d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
-  </svg>
-  Login failed, Please try again 
-</div>:""}
+        {userMessage && (
+          <div role="alert" className="flex items-center gap-2 p-3 mb-4 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 rounded-lg border border-green-200 dark:border-green-800">
+            <i className="fa-solid fa-circle-check"></i>
+            Login successful! Welcome {userMessage}
+          </div>
+        )}
+
+        {errorMessage && (
+          <div role="alert" className="flex items-center gap-2 p-3 mb-4 bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-400 rounded-lg border border-red-200 dark:border-red-800">
+            <i className="fa-solid fa-circle-xmark"></i>
+            Login failed, please try again
+          </div>
+        )}
 
         <form className="space-y-6" onSubmit={formik.handleSubmit}>
           <div>
-            <label htmlFor="username" className="block text-lg font-medium mb-2 text-black">Username:</label>
-            <input type="text" name="username" id="username" value={formik.values.username} onChange={formik.handleChange} onBlur={formik.handleBlur} placeholder="Enter your username" className="input input-bordered w-full mt-1 border-[#DB4444] focus:border-[#DB4444] focus:ring-[#DB4444] "/>
-            {formik.touched.username && formik.errors.username ? (
+            <label htmlFor="username" className="block text-lg font-medium mb-2 text-gray-800 dark:text-gray-200">Username:</label>
+            <input
+              type="text"
+              name="username"
+              id="username"
+              value={formik.values.username}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              placeholder="Enter your username"
+              className="w-full px-4 py-3 mt-1 border border-[#DB4444] rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#DB4444] transition"
+            />
+            {formik.touched.username && formik.errors.username && (
               <div className="text-red-500 text-sm mt-1">{formik.errors.username}</div>
-            ) : null}
+            )}
           </div>
 
           <div>
-            <label htmlFor="password" className="block text-lg font-medium mb-2 text-black">Password:</label>
-            <input type="password" name="password" id="password" value={formik.values.password} onChange={formik.handleChange} onBlur={formik.handleBlur} placeholder="Enter your password" className="input input-bordered w-full mt-1 border-[#DB4444] focus:border-[#DB4444] focus:ring-[#DB4444]"/>
-            {formik.touched.password && formik.errors.password ? (
+            <label htmlFor="password" className="block text-lg font-medium mb-2 text-gray-800 dark:text-gray-200">Password:</label>
+            <input
+              type="password"
+              name="password"
+              id="password"
+              value={formik.values.password}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              placeholder="Enter your password"
+              className="w-full px-4 py-3 mt-1 border border-[#DB4444] rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#DB4444] transition"
+            />
+            {formik.touched.password && formik.errors.password && (
               <div className="text-red-500 text-sm mt-1">{formik.errors.password}</div>
-            ) : null}
+            )}
           </div>
 
-
-          {isLoading?   <div className="flex justify-center">
-            <button type="submit" className="btn w-1/2 bg-[#DB4444] hover:bg-red-600 border-none text-white text-lg py-3 rounded-xl" > <i className='fa fa-spinner fa-spin'></i></button>
-          </div>: <div className="flex justify-center">
-            <button type="submit" className="btn w-1/2 bg-[#DB4444] hover:bg-red-600 border-none text-white text-lg py-3 rounded-xl" disabled={!(formik.isValid&&formik.dirty)} > Log In</button>
-          </div>}
+          <div className="flex justify-center">
+            <button
+              type="submit"
+              className="w-1/2 bg-[#DB4444] hover:bg-red-600 border-none text-white text-lg py-3 rounded-xl transition disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
+              disabled={!(formik.isValid && formik.dirty)}
+            >
+              {isLoading ? <i className="fa fa-spinner fa-spin"></i> : "Log In"}
+            </button>
+          </div>
         </form>
-        <p className="text-center mt-6 text-black">Do not have an account? <Link to="/register" className="text-[#DB4444] font-medium">Register</Link></p>
+
+        <p className="text-center mt-6 text-gray-700 dark:text-gray-300">
+          Do not have an account?{" "}
+          <Link to="/register" className="text-[#DB4444] font-medium hover:underline">Register</Link>
+        </p>
       </div>
     </>
   );
