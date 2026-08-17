@@ -23,7 +23,7 @@ function App() {
   const queryClient =new QueryClient()
   let routes = createBrowserRouter([{
   path:"",element:<Layout></Layout>,children:[
-    {index:true,element:<ProtectedRoutes><Home></Home></ProtectedRoutes>},
+    {index:true,element:<Home></Home>},
     {path:"login",element:<ProtectedAuth><Login></Login></ProtectedAuth>},
     {path:"register",element:<ProtectedAuth><Register></Register></ProtectedAuth>},
     {path:"singleproducts/:id",element:<ProtectedRoutes><SingleProduct></SingleProduct></ProtectedRoutes>},
