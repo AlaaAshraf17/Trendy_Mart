@@ -98,6 +98,13 @@ export default function Register() {
         </div>
       )}
 
+      <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-700 rounded-lg p-4 mb-2 text-sm text-gray-700 dark:text-gray-300">
+        <p className="font-semibold text-blue-700 dark:text-blue-400 mb-1">
+          <i className="fa-solid fa-circle-info mr-2"></i>Demo Note
+        </p>
+        <p>Use any email but use this password: <span className="font-mono font-bold text-gray-900 dark:text-white">emilyspass</span></p>
+      </div>
+
       <form className="space-y-5" onSubmit={formik.handleSubmit}>
         <div>
           <label htmlFor="firstName" className="block text-lg font-medium mb-2 text-gray-800 dark:text-gray-200">First Name:</label>

@@ -26,7 +26,7 @@ function App() {
     {index:true,element:<Home></Home>},
     {path:"login",element:<ProtectedAuth><Login></Login></ProtectedAuth>},
     {path:"register",element:<ProtectedAuth><Register></Register></ProtectedAuth>},
-    {path:"singleproducts/:id",element:<ProtectedRoutes><SingleProduct></SingleProduct></ProtectedRoutes>},
+    {path:"singleproducts/:id",element:<SingleProduct></SingleProduct>},
     {path:"cart",element:<ProtectedRoutes><Cart></Cart></ProtectedRoutes>},
     {path:"products",element:<Products></Products>},
     {path:"categories",element:<Categories></Categories>},
